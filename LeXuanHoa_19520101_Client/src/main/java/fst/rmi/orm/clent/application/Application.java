@@ -6,9 +6,10 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import fst.rmi.orm.server.entity.Account;
+import fst.rmi.orm.server.entity.Computer;
 import fst.rmi.orm.server.entity.Employee;
 import fst.rmi.orm.server.repository.AccountRepository;
+import fst.rmi.orm.server.repository.ComputerRepository;
 import fst.rmi.orm.server.repository.EmployeeRepository;
 
 public class Application {
@@ -24,20 +25,27 @@ public class Application {
 
 		AccountRepository accountService = null;
 		EmployeeRepository employeeService = null;
+		ComputerRepository computerService = null;
 
 		try {
 			accountService = (AccountRepository) Naming
 					.lookup("rmi://" + RMI_SERVER_URI + ":" + RMI_SERVER_PORT + "/accountService");
 			employeeService = (EmployeeRepository) Naming
 					.lookup("rmi://" + RMI_SERVER_URI + ":" + RMI_SERVER_PORT + "/employeeService");
+			computerService = (ComputerRepository) Naming
+					.lookup("rmi://" + RMI_SERVER_URI + ":" + RMI_SERVER_PORT + "/computerService");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			e.printStackTrace();
 		}
 
 		Employee employee = new Employee("internSeXuanHoa", "internSeXuanHoa");
-		Account account = new Account("internSeXuanHoa", "interSeXuanHoa", employee);
+		Computer macOS = new Computer("macOS", "Apple", employee);
+		Computer windowsOS = new Computer("windowsOS", "Dell", employee);
+
 		try {
-			accountService.save(account);
+			employeeService.save(employee);
+			computerService.save(macOS);
+			computerService.save(windowsOS);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
