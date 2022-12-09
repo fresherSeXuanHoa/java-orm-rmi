@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import fst.rmi.orm.server.hibernate.AccountService;
 import fst.rmi.orm.server.hibernate.ComputerService;
 import fst.rmi.orm.server.hibernate.EmployeeService;
+import fst.rmi.orm.server.hibernate.RoleService;
 
 public class Application {
 	public static void main(String[] args) {
@@ -25,6 +26,7 @@ public class Application {
 			Naming.bind("rmi://" + RMI_SERVER_URL + ":" + RMI_SERVER_PORT + "/accountService", new AccountService());
 			Naming.bind("rmi://" + RMI_SERVER_URL + ":" + RMI_SERVER_PORT + "/employeeService", new EmployeeService());
 			Naming.bind("rmi://" + RMI_SERVER_URL + ":" + RMI_SERVER_PORT + "/computerService", new ComputerService());
+			Naming.bind("rmi://" + RMI_SERVER_URL + ":" + RMI_SERVER_PORT + "/roleService", new RoleService());
 
 			System.err.println("RMI Server is running in address: " + RMI_SERVER_URL + ":" + RMI_SERVER_PORT);
 		} catch (Exception e) {

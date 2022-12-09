@@ -18,5 +18,6 @@
 		<mapping class="fst.rmi.orm.server.entity.Account" />
 		<mapping class="fst.rmi.orm.server.entity.Employee" />
 		<mapping class="fst.rmi.orm.server.entity.Computer" />
+		<mapping class="fst.rmi.orm.server.entity.Role" />
 	</session-factory>
 </hibernate-configuration>
